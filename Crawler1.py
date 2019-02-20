@@ -19,6 +19,17 @@ import requests
 #     except:
 #         return "出现异常"
 
+def downloadImg(url, path):
+    try:
+        r = requests.get(url)
+        r.raise_for_status
+        print(r.status_code)
+        with open(path, 'wb') as f:
+            f.write(r.content)
+            f.close()
+    except:
+        print("下载出错")
+
 
 if __name__ == "__main__":
     # url = "http://www.baidu.com/"
@@ -27,10 +38,6 @@ if __name__ == "__main__":
     # r.encoding = r.apparent_encoding
     # print(r.text[:1000])
     url = "https://www.baidu.com/img/bd_logo1.png?where=super"
-    r = requests.get(url)
-    print(r.status_code)
     # print("ha")
     path = "./baidu.jpg"
-    with open(path, 'wb') as f:
-        f.write(r.content)
-        f.close()
+    downloadImg(url, path)
