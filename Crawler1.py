@@ -20,5 +20,7 @@ def getHTMLText(url):
         return "出现异常"
 
 if __name__ == "__main__":
-    url = "www.baidu.com"
-    print(getHTMLText(url))
+    url = "https://www.amazon.cn/gp/product/B01M8L5Z3Y"
+    r = requests.get(url)
+    r.encoding = r.apparent_encoding
+    print(r.text[:1000])
